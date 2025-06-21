@@ -19,7 +19,10 @@ app.use(
 app.use(bodyParser.json()); // Parse JSON request bodies
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser())
-app.use(fileUpload({useTempFiles: true}));
+app.use(fileUpload({
+  useTempFiles: true,
+  tempFileDir: '/tmp', // ✅ Only this is allowed in Vercel
+}));
 
 // importing routes
 const signup = require('./Views/Signup')
