@@ -99,19 +99,18 @@ const handleLogin = async (req, res) => {
       });
     }
 
-    const token = setUser(user)
-    res.cookie('uid', token, {
-  httpOnly: true,
-  secure: true,
-  sameSite: 'None',
-});
+    // Generate token
+    const token = setUser(user);
+
+    // Set cookie with Partitioned attribute manually
+    res.setHeader('Set-Cookie', `uid=${token}; HttpOnly; Secure; SameSite=None; Partitioned; Path=/`);
+
     // Success
     return res.status(200).json({
       success: true,
       message: 'Login successful',
-      LoginUser: user
+      LoginUser: user,
     });
-
 
   } catch (error) {
     console.error('Login error:', error);
@@ -121,6 +120,7 @@ const handleLogin = async (req, res) => {
     });
   }
 };
+
 
 const handlePostBlog = async (req, res) => {
   try {
