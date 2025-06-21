@@ -9,11 +9,13 @@ require('dotenv').config()
 const PORT = process.env.PORT;
 
 // middlewares
-app.use(cors({
-  origin: "https://penprose.github.io",
-  credentials: true,
-  methods: ['POST', 'DELETE', 'GET']
-}))
+app.use(
+  cors({
+    origin: 'https://penprose.github.io',
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  })
+);
 app.use(bodyParser.json()); // Parse JSON request bodies
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser())
