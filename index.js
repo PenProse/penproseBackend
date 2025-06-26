@@ -12,7 +12,7 @@ const PORT = process.env.PORT;
 
 // middlewares
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: 'https://penprose.github.io',
   credentials: true,
   methods: ['POST', 'GET', "DELETE"]
 }))
